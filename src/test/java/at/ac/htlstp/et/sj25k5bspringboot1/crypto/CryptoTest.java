@@ -17,7 +17,9 @@ public class CryptoTest {
         System.out.println("sha512: " + sha512);
 
         String b64 = Cryptographie.base64Encode(text);
-        String decoded = Cryptographie.base64Decode(b64);
+        String decoded = Cryptographie.base64DecodeString(b64);
 
+        System.out.println("decoded: " + decoded);
+        System.out.println("b64: " + b64);
     }
 }

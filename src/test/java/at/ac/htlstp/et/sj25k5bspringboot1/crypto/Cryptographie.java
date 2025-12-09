@@ -7,7 +7,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 
-public class Cyptographie {
+public class Cryptographie {
 
     /**
      * erzeugt eine MD5-Prüfsumme
@@ -78,6 +78,17 @@ public class Cyptographie {
     }
 
     /**
+     * Erzeugt aus einem binären Dateiinhalt eines Byte-Arrays einen Base64-codierten String
+     * @param bytes Dateiinhalt
+     * @return      Base64-codierter String
+     */
+    public static String base64Encode(byte[] bytes) {
+        String encodedString = Base64.getMimeEncoder().encodeToString(bytes);
+        encodedString = encodedString.replaceAll("\n","").replaceAll("\r","");
+        return encodedString;
+    }
+
+    /**
      * Erzeugt aus einem Base64-codierten String den ursprünglichen binären Dateiinhalt
      * @param base64encodedString Base64-codierter String
      * @return                    Dateiinhalt
@@ -86,6 +97,27 @@ public class Cyptographie {
     public static byte[] base64Decode(String base64encodedString) throws IOException {
         byte[] base64decodedBytes = Base64.getMimeDecoder().decode(base64encodedString);
         return base64decodedBytes;
+    }
+
+    /**
+     * Erzeugt aus einem beliebigen String einen Base64-codierten String
+     * @param s     String
+     * @return      Base64-codierter String
+     */
+    public static String base64Encode(String s) {
+        String encodedString = Base64.getMimeEncoder().encodeToString(s.getBytes());
+        encodedString = encodedString.replaceAll("\n","").replaceAll("\r","");
+        return encodedString;
+    }
+
+    /**
+     * Erzeugt aus einem Base64-codierten String den ursprünglichen String
+     * @param base64encodedString Base64-codierter String
+     * @return                    String
+     * @throws IOException        Fehler wenn etwas nicht funktioniert hat
+     */
+    public static String base64DecodeString(String base64encodedString) throws IOException {
+        return new String(Base64.getMimeDecoder().decode(base64encodedString));
     }
 
 }

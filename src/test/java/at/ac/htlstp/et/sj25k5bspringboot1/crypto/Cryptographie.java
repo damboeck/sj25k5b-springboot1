@@ -99,6 +99,17 @@ public class Cryptographie {
         return base64decodedBytes;
     }
 
+    public static String sha512Base64(String s) {
+        String hash = "";
+        try {
+            byte[] digest = MessageDigest
+                    .getInstance("SHA-512")
+                    .digest(s.getBytes());
+            hash = base64Encode(digest);
+        } catch (Exception ex) {}
+        return hash;
+    }
+
     /**
      * Erzeugt aus einem beliebigen String einen Base64-codierten String
      * @param s     String
